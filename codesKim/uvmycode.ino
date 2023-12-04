@@ -80,6 +80,9 @@ void Cover() {
         delay(600000); // 10분 대기
         flag2 = false;
     }
+    else {
+        delay(1000); // 1초 대기
+    }
 }
 
 
