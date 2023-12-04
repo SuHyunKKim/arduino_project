@@ -41,7 +41,7 @@ void loop() {
     lcd.setCursor(0, 1); 
     lcd.print("closing shade");
 
-    for (int i=0; i<90; i++){
+    for (int i=0; i<100; i++){
       EduServo1.write(i); // 0 -> 90
       EduServo2.write(180-i);  //180 -> 90
       delay(50);
@@ -58,7 +58,7 @@ void loop() {
     lcd.setCursor(0, 1); 
     lcd.print("opening shade");
 
-    for (int i=90; i>0; i--){
+    for (int i=100; i>0; i--){
       EduServo1.write(i); // 90 -> 0
       EduServo2.write(180-i); // 90 -> 180
       delay(50);
