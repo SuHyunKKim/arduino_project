@@ -15,15 +15,17 @@ int flag2 = 0;
 
 
 void setup() {
-  EduServo1.attach(4);    // 디지털 핀 4번에 연결
+  EduServo1.attach(4); 
   EduServo2.attach(5);
 
   lcd.begin();
   lcd.backlight();
 
+  pinMode(A1, INPUT);
+
   Serial.begin(9600);
 
-  // pinMode(A1, INPUT);
+
 }
 
 void loop() {
@@ -106,7 +108,7 @@ void loop() {
           EduServo2.write(180-i);  //180 -> 90
           delay(50);
         }
-        
+
         lcd.clear(); 
       }
     }
