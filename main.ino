@@ -24,8 +24,6 @@ void setup() {
   pinMode(A1, INPUT);
 
   Serial.begin(9600);
-
-
 }
 
 void loop() {
@@ -52,11 +50,10 @@ void loop() {
 
     lcd.clear();
 
-    d = 0;
+    int d = 0;
     while (d<600)  { // 컨셉 : 매초 스위치 값을 10분동안 읽으면서 스위치 값이 바뀌면 수동으로 다시 열음
       int dataIn = digitalRead(A1);
-      delay(1000);
-      d += 1;
+
       if (flag != dataIn) {
         flag = dataIn;
 
@@ -73,6 +70,8 @@ void loop() {
 
         lcd.clear(); 
       }
+      delay(1000);
+      d += 1;
     }
   }
   else if (sensorValue < 1) { // 자외선 수치 1 미만일때는 자동으로 열음
@@ -90,11 +89,10 @@ void loop() {
 
     lcd.clear();
 
-    d = 0;
+    int d = 0;
     while (d<600)  { // 컨셉 : 매초 스위치 값을 10분동안 읽으면서 스위치 값이 바뀌면 수동으로 다시 닫음
       int dataIn = digitalRead(A1);
-      delay(1000);
-      d += 1;
+
       if (flag != dataIn) {
         flag = dataIn;
 
@@ -111,6 +109,8 @@ void loop() {
 
         lcd.clear(); 
       }
+      delay(1000);
+      d += 1;
     }
   }
 
