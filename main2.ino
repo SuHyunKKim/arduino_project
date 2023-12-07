@@ -1,8 +1,6 @@
-#include <Servo.h>
-
 // 서보 모터 객체 생성
-Servo EduServo1;
-Servo EduServo2;
+#include <Servo.h>
+Servo EduServo1; Servo EduServo2;
 
 // LCD 모니터 라이브러리
 #include <Wire.h> //i2c 통신
@@ -18,6 +16,7 @@ void setup() {
   pinMode(A1, INPUT);
   Serial.begin(9600);
 }
+
 void loop() {
   float sensorValue;
   sensorValue = analogRead(A0);
@@ -33,11 +32,9 @@ void loop() {
       delay(50);
     }
     lcd.clear();
-    d = 0;
-    while (d<600)  { // 컨셉 : 매초 스위치 값을 10분동안 읽으면서 스위치 값이 바뀌면 수동으로 다시 열음
+    int d = 0;
+    while (d<600)  {
       int dataIn = digitalRead(A1);
-      delay(1000);
-      d += 1;
       if (flag != dataIn) {
         flag = dataIn;
         lcd.setCursor(0, 0); lcd.print("Opening shade");
@@ -49,6 +46,8 @@ void loop() {
         }
         lcd.clear(); 
       }
+      delay(1000);
+      d += 1;
     }
   }
   else if (sensorValue < 1) { // 자외선 수치 1 미만일때는 자동으로 열음
@@ -60,11 +59,9 @@ void loop() {
       delay(50);
     }
     lcd.clear();
-    d = 0;
-    while (d<600)  { // 컨셉 : 매초 스위치 값을 10분동안 읽으면서 스위치 값이 바뀌면 수동으로 다시 닫음
+    int d = 0;
+    while (d<600)  {
       int dataIn = digitalRead(A1);
-      delay(1000);
-      d += 1;
       if (flag != dataIn) {
         flag = dataIn;
         lcd.setCursor(0, 0); lcd.print("Closing shade");
@@ -76,6 +73,8 @@ void loop() {
         }
         lcd.clear(); 
       }
+      delay(1000);
+      d += 1;
     }
   }
   else if (flag != data) { // 수동으로 여닫는 기능
@@ -103,7 +102,7 @@ void loop() {
       }
       lcd.clear(); 
     }
-    delay(60000); // 수동으로 여닫았을때는 딜레이 1분으로 설정. 자외선이 1분뒤에 엄청쎄면 닫아주려고.
+    delay(60000); // 수동으로 여닫았을때는 딜레이 1분으로 설정
   }
   delay(1000);
 }
